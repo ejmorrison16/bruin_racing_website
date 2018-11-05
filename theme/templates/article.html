@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }}{% endblock title %}
+{% block description %}
+  <link rel="canonical" href="{{ SITEURL }}/{{ article.url }}">
+  <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
+  <meta property="og:title" content="{{ article.title }}" />
+
+  {% if article.description %}
+  <meta property="og:description"content="{{ article.description }}" />
+  {% endif %}
+
+  {% if article.image %}
+  <meta property="og:image" content="{{ SITEURL }}/{{ article.image }}" />
+  {% else %}
+  <meta name="og:image" content="{{ SITEURL }}/images/authors/{{ article.authors[0].slug }}.png" />
+  {% endif %}
+  <meta property="og:type" content="article" />
+
+  {% if article.description %}
+  <meta name="description" content="{{ article.description }}" />
+  {% endif %}
+  {% for tag in article.tags %}
+  <meta name="tags" content="{{ tag }}" />
+  {% endfor %}
+
+  <meta name="twitter:title" content="{{ article.title }}" />
+  <meta name="twitter:site" content="@cogini" />
+  {% if article.description %}
+  <meta name="twitter:description" content="{{ article.description }}" />
+  {% endif %}
+  {% if article.image %}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="{{ SITEURL }}/{{ article.image }}" />
+  {% else %}
+  <meta name="twitter:image" content="{{ SITEURL }}/images/authors/{{ article.authors[0].slug }}.png" />
+  <meta name="twitter:card" content="summary" />
+  {% endif %}
+{% endblock description %}
+
+{% block head %}
+  {{ super() }}
+  <style>
+    .fb_iframe_widget { vertical-align: top; }
+  </style>
+{% endblock %}
+
+{% block content %}
+<div class="blog-post">
+  <div class="container">
+    <h3 class="blog-post-title">{{ article.title }}</h3>
+    {% import 'translations.html' as translations with context %}
+    {{ translations.translations_for(article) }}
+
+    <div class="blog-post-header">
+      {% for author in article.authors %}
+      <div class="blog-post-author">
+        <img src="{{ SITEURL }}/images/authors/{{ author.slug }}.png" class="avatar" alt="author" />
+        By <span>{{ author }}</span>
+      </div>
+      {% endfor %}
+      <div class="blog-post-date">
+          Date <span>{{ article.locale_date }}</span>
+          {% if article.category %}<br/>Category: <span><a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a></span>{% endif %}
+          {% if article.tags %}<br/>Tags: {% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>{{ ", " if not loop.last }} {% endfor %}{% endif %}
+      </div>
+    </div>
+
+    <div class="blog-post-content">
+      {{ article.content }}
+    </div>
+
+    {% if false %}
+    <div class="blog-post-share">
+      Share this post:
+      <a class="twitter-share-button" href="https://twitter.com/intent/tweet"></a>
+      <div class="fb-share-button" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse">Share</a></div>
+      {% if false %}
+      <a href="http://bufferapp.com/add" class="buffer-add-button" data-count="none" data-via="cogini"><i class="ion-social-buffer"></i></a>
+      <script type="text/javascript" src="https://static.buffer.com/js/button.js"></script>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block foot %}
+  {{ super() }}
+  <script>window.twttr = (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+
+    return t;
+  }(document, "script", "twitter-wjs"));
+</script>
+<div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=169571003071390";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+{% endblock %}

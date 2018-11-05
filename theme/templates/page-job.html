@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block content %}
+
+<div class="career-post-header bg-careers" style="margin-top: 64px;">
+  <section class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>{{ page.subtitle }}</h1>
+      </div>
+    </div>
+  </section>
+</div>
+
+  <div class="container main-content">
+    <div class="row">
+      <div class="col-md-8">
+        {{ page.content }}
+      </div>
+      <div class="col-md-4 sidebar sidebar-nav">
+        <h3 style="margin-top: 0">Roles</h3>
+        <ul>
+          <li><a {% if page and page.slug == 'technical-lead-project-manager' %}class="active" {% endif %}href="/careers/technical-lead-project-manager/">Team Technical Lead/Project Manager</a></li>
+          <li><a {% if page and page.slug == 'developer' %}class="active" {% endif %}href="/careers/developer/#bot-developer">Bot Developer</a></li>
+          <li><a {% if page and page.slug == 'developer' %}class="active" {% endif %}href="/careers/developer/#web-developer">Web Developer</a></li>
+          <li><a {% if page and page.slug == 'developer' %}class="active" {% endif %}href="/careers/developer/#mobile-developer">Mobile Developer</a></li>
+          <li><a {% if page and page.slug == 'developer' %}class="active" {% endif %}href="/careers/developer/#iot-developer">IoT Developer</a></li>
+          <li><a {% if page and page.slug == 'site-reliability-engineer' %}class="active" {% endif %}href="/careers/site-reliability-engineer/">DevOps / Site Reliability Engineer</a></li>
+          <li><a {% if page and page.slug == 'sales-agent-project-manager' %}class="active" {% endif %}href="/careers/sales-agent-project-manager/">Sales Agent/Project Manager</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

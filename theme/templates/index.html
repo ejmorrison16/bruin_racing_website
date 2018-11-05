@@ -1,0 +1,103 @@
+{% extends "base.html" %} {% block content %} {% block content_title %}
+<!--<h1>Cogini Blog</h1>-->
+{% endblock %}
+
+<div class="career-post-header bg-blog">
+  <section class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Cogini Blog</h1>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="container main-content">
+  <div class="row">
+    <div class="col-10">
+      {% for article in articles_page.object_list %}
+      <div class="post cg-blog-post">
+        <div class="title">
+          <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            {% for author in article.authors %}
+            <div class="vcard author">
+              <img src="{{ SITEURL }}/images/authors/{{ author.slug }}.png" class="avatar" alt="author" />
+              {% if false %}
+              <a class="url fn" href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+              {% endif %}
+              <a class="url fn" href="https://twitter.com/reachfh">{{ author }}</a>
+              <time class="published" datetime="{{ article.date.isoformat() }}"> {{ article.locale_date }} </time>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="col-xs-12 col-sm-7 col-md-8">
+            <p class="intro">{{ article.summary }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-2 text-left">
+          {% if article.category %}<a href="{{ SITEURL }}/{{ article.category.url }}" class="continue-reading btn-shadow btn-shadow-primary">{{ article.category }}</a>{% endif %}
+          </div>
+          <div class="col-10 text-right">
+            <a href="{{ SITEURL }}/{{ article.url }}" class="continue-reading btn-shadow btn-shadow-primary">Continue reading</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      {% if false %}
+      <!--{% for article in articles_page.object_list %}
+      <li>
+        <article class="hentry">
+          <header>
+            <h2 class="entry-title"><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
+          </header>
+          <footer class="post-info">
+          </footer>
+          <div class="entry-content"> {{ article.summary }} </div>
+        </article>
+      </li>
+      {% endfor %} -->
+      {% endif %}
+
+      {% if articles_page.has_other_pages() %}
+      {% include 'pagination.html' %}
+      {% endif %}
+    </div>
+    <div class="col-md-2">
+      <div class="categories">
+        <h4>Categories</h4>
+        <ul>
+          {% for category, articles in categories|sort %}
+          <li><a href="{{ SITEURL }}/{{ category.url }}">{{ category }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="categories">
+        <h4>Tags</h4>
+        <ul>
+          {% for tag, articles in tags|sort %}
+          <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    {% if false %}
+    <div class="col-md-3">
+      <div class="updates sticky-top" style="top: 80px;">
+        <i class="fa fa-rss"></i>&nbsp;<a href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" target="_blank"><strong>Subscribe to our feed</strong></a>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock content %}

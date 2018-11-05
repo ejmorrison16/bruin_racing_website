@@ -1,0 +1,52 @@
+{% if DEFAULT_PAGINATION %}
+          <div class="pages">
+            <ul class="pagination">
+
+              {% if articles_page.has_previous() %}
+              <li class="page-item">
+                <a class="page-link" href="{{ SITEURL }}/{{ articles_previous_page.url }}">&larr; Previous Page</a>
+              </li>
+              {% endif %}
+
+              {% for page in range(articles_paginator.num_pages) -%}
+                {% if articles_page.number > 9999 %}
+                  {% set url_for_this_page = articles_page.url[:-10] %}
+                {% elif articles_page.number > 999 %}
+                  {% set url_for_this_page = articles_page.url[:-9] %}
+                {% elif articles_page.number > 99 %}
+                  {% set url_for_this_page = articles_page.url[:-8] %}
+                {% elif articles_page.number > 9 %}
+                  {% set url_for_this_page = articles_page.url[:-7] %}
+                {% elif articles_page.number > 1  %}
+                  {% set url_for_this_page = articles_page.url[:-6] %}
+                {% else %}
+                  {% set url_for_this_page = articles_page.url[:-5] %}
+                {% endif %}
+
+              {% if page+1 == articles_page.number %}
+              <li class="page-item active">
+                <a class="page-link" href="#">{{ page+1 }}</a>
+              </li>
+              {% else %}
+                  {% if page+1 == 1 %}
+              <li class="page-item">
+                <a class="page-link" href="{{ SITEURL }}/{{ url_for_this_page }}.html">{{ page+1 }}</a>
+              </li>
+                  {% else %}
+              <li class="page-item">
+                <a class="page-link" href="{{ SITEURL }}/{{ url_for_this_page }}{{ page+1 }}.html">{{ page+1 }}</a>
+              </li>
+                  {% endif %}
+                {% endif %}
+              {%- endfor %}
+
+    <!-- Page {{ articles_page.number }} / {{ articles_paginator.num_pages }} -->
+
+              {% if articles_page.has_next() %}
+              <li class="page-item">
+                <a class="page-link" href="{{ SITEURL }}/{{ articles_next_page.url }}">Next Page &rarr;</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+{% endif %}
