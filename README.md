@@ -32,13 +32,13 @@ special CSS or JS, make a new template which extends the base template,
 same as the Baja page does, e.g. `theme/templates/page-baja.html`.
 Add CSS to the `extra_css` section, JavaScript libraries to the
 `extra_vendor_js` section, or JavaScript initialization/configuration code to
-the `js_plugins_init` section.  Then reference your template in the HTML
+the `js_plugins_init` section.  Then reference your template in the HTML:
 
 ```html
 <meta name="template" content="page-foo" />
 ```
 
-You can then link to your new page like:
+You can then link to your new page:
 
 ```html
 <a href="/foo/">Foo</a>
@@ -46,7 +46,7 @@ You can then link to your new page like:
 
 # Installation
 
-Before running things, you need to install the Pelican libraries and set up
+Before running commands, you need to install the Pelican libraries and set up
 your environment.
 
 # Set up pelican
@@ -70,13 +70,13 @@ pip3 install -r requirements.txt
 
 # Generate content
 
-Every time you run Pelican commands, you have to "activate" the virtualenv, e.g.
+Every time you run Pelican commands, you have to "activate" the virtualenv:
 
 ```shell
 source ~/.virtualenvs/bruinracing/bin/activate
 ```
 
-Generate html to run locally
+Generate html to run locally:
 
     make html
 
@@ -116,6 +116,7 @@ https://github.com/Nitron/pelican-alias plugin:
 ```html
 <meta name="alias" content="/site/index/" />
 ```
+or, for markdown:
 
     Alias: /blog/old/
 
@@ -133,15 +134,4 @@ https://github.com/Nitron/pelican-alias plugin:
 git clone --recursive https://github.com/getpelican/pelican-plugins
 ```
 
-Copy them to the plugins dir:
-
-http://hyperpolyglot.org/lightweight-markup
-https://dev.twitter.com/cards/types/summary
-
-# Syntax highlighting
-
-http://docs.getpelican.com/en/3.6.3/faq.html#i-m-creating-my-own-theme-how-do-i-use-pygments-for-syntax-highlighting
-
-https://github.com/honza/vim2pygments
-
-/Users/jake/.asdf/installs/nodejs/8.2.1/.npm/bin/gulp
+Copy them to the plugins dir.
