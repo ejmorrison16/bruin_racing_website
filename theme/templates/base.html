@@ -9,22 +9,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    {% if false %}
+    <!-- Used when sharing content on e.g. Twitter or Facebook -->
     {% block description %}
     <meta property="og:url"           content="{{ SITEURL }}/" />
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Bruin Racing" />
-    <meta property="og:description"   content="Motor racing teams at UCLA" />
+    <meta property="og:title"         content="{{ SITESUBTITLE }}" />
+    <meta property="og:description"   content="{{ SITEDESCRIPTION }}" />
     <meta property="og:image"         content="{{ SITEURL }}/images/logo.png" />
-    <meta name="description" content="">
+    <meta name="description" content="{{ SITEDESCRPTION }}">
     {% endblock description %}
-    {% endif %}
 
     {% if FAVICON %}
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ FAVICON }}" type="image/x-icon">
     <link rel="icon" href="{{ FAVICON }}" type="image/x-icon">
     {% endif %}
+
+    {% if GOOGLE_ANALYTICS %} {% include "partial/ga.html" %} {% endif %}
 
     {% if FEED_ALL_ATOM %}
     <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
@@ -174,13 +175,13 @@
               <!-- Social Icons -->
               <ul class="col-auto list-inline g-pos-rel g-top-minus-3 g-py-20 g-py-6--lg g-pr-5 g-mr-60 g-mr-0--lg ml-auto ml-lg-0 mb-0">
                 <li class="list-inline-item g-mx-0">
-                  <a class="u-icon-v3 u-icon-size--xs g-bg-transparent g-bg-main--hover rounded" href="https://www.facebook.com/bruinracing/"><i class="fa fa-facebook"></i></a>
+                    <a class="u-icon-v3 u-icon-size--xs g-bg-transparent g-bg-main--hover rounded" href="https://www.facebook.com/{{ FACEBOOK_NAME }}"><i class="fa fa-facebook"></i></a>
                 </li>
                 <li class="list-inline-item g-mx-0">
-                  <a class="u-icon-v3 u-icon-size--xs g-bg-transparent g-bg-main--hover rounded" href="https://twitter.com/bruinracing?lang=en"><i class="fa fa-twitter"></i></a>
+                    <a class="u-icon-v3 u-icon-size--xs g-bg-transparent g-bg-main--hover rounded" href="https://twitter.com/{{ TWITTER_NAME }}"><i class="fa fa-twitter"></i></a>
                 </li>
                 <li class="list-inline-item g-mx-0">
-                  <a class="u-icon-v3 u-icon-size--xs g-bg-transparent g-bg-main--hover rounded" href="https://www.instagram.com/bruinracing/?hl=en"><i class="fa fa-instagram"></i></a>
+                    <a class="u-icon-v3 u-icon-size--xs g-bg-transparent g-bg-main--hover rounded" href="https://www.instagram.com/{{ INSTAGRAM_NAME }}/?hl=en"><i class="fa fa-instagram"></i></a>
                 </li>
               </ul>
               <!-- End Social Icons -->
@@ -276,7 +277,6 @@
   <!-- JS Plugins Init. -->
   {% block js_plugins_init %} {% endblock js_plugins_init %}
 
-  {% if GOOGLE_ANALYTICS %} {% include "partial/ga.html" %} {% endif %}
   {% endblock foot %}
   </body>
 </html>

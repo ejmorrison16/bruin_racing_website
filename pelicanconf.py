@@ -10,15 +10,16 @@ SITEURL = ''
 
 AUTHOR = u'Lisa Morrison'
 
-GITHUB_URL = 'https://github.com/ejmorrison16/bruin_racing_website'
+# GITHUB_URL = 'https://github.com/ejmorrison16'
 
-TWITTER_USERNAME = 'cogini'
-FACEBOOK_NAME = 'cogini'
-FACEBOOK_APPID = '169571003071390'
-# GOOGLE_ANALYTICS = 'UA-7881029-2'  # cogini
+TWITTER_NAME = 'bruinracing'
+FACEBOOK_NAME = 'bruinracing'
+INSTAGRAM_NAME = 'bruinracing'
+# FACEBOOK_APPID = '169571003071390'
+GOOGLE_ANALYTICS = 'UA-7881029-17'
 
-# SITESUBTITLE = 'Software Developer and Entrepreneur in Taipei'
-# SITEDESCRIPTION = 'Jake Morrison\'s Thoughts and Writings'
+SITESUBTITLE = 'Bruin Racing'
+SITEDESCRIPTION = 'Student motor racing teams at UCLA'
 
 SITELOGO = SITEURL + '/images/logo.png'
 FAVICON = SITEURL + '/images/logo/racing_tab_logo.png'
