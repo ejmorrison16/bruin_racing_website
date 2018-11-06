@@ -113,6 +113,10 @@ make s3_upload
 If you change the URL, you can make an alias from the old URL to to the new one using the
 https://github.com/Nitron/pelican-alias plugin:
 
+```html
+<meta name="alias" content="/site/index/" />
+```
+
     Alias: /blog/old/
 
 # Docs
