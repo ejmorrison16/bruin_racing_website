@@ -121,11 +121,11 @@ https://github.com/Nitron/pelican-alias plugin:
 
 # Docs
 
-Home page: https://blog.getpelican.com/
-Docs: http://docs.getpelican.com/en/stable/settings.html
-Tutorials: https://github.com/getpelican/pelican/wiki/Tutorials
-Themes: http://docs.getpelican.com/en/stable/themes.html
-Useful vars: https://stackoverflow.com/questions/40923844/variable-for-url-of-current-page-in-pelican-templates
+* Home page: https://blog.getpelican.com/
+* Docs: http://docs.getpelican.com/en/stable/settings.html
+* Tutorials: https://github.com/getpelican/pelican/wiki/Tutorials
+* Themes: http://docs.getpelican.com/en/stable/themes.html
+* Useful vars: https://stackoverflow.com/questions/40923844/variable-for-url-of-current-page-in-pelican-templates
 
 ## Plugins
 
