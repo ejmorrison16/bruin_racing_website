@@ -10,7 +10,8 @@ SITEURL = ''
 
 AUTHOR = u'Lisa Morrison'
 
-GITHUB_URL = 'https://github.com/cogini/'
+GITHUB_URL = 'https://github.com/ejmorrison16/bruin_racing_website'
+
 TWITTER_USERNAME = 'cogini'
 FACEBOOK_NAME = 'cogini'
 FACEBOOK_APPID = '169571003071390'
@@ -25,7 +26,7 @@ FAVICON = SITEURL + '/images/logo/racing_tab_logo.png'
 BROWSER_COLOR = '#333'
 ROBOTS = 'index, follow'
 
-# COPYRIGHT_YEAR = 2018
+# COPYRIGHT_YEAR = 2019
 
 MAIN_MENU = True
 
@@ -37,7 +38,7 @@ ARTICLE_EXCLUDES = ['extra']
 
 THEME = 'theme'
 
-TIMEZONE = 'Asia/Taipei'
+TIMEZONE = 'US/Pacific'
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
@@ -71,7 +72,9 @@ SITEMAP = {
 EXTRA_PATH_METADATA = {
     'images/favicon.ico': {'path': 'favicon.ico'},
     'extra/robots.txt': {'path': 'robots.txt'},
-    'extra/google700c1f01b6b0e74c.html': {'path': 'google700c1f01b6b0e74c.html'},
+    # This is how you put a file in the root directory to validate control of
+    # the domain for google
+    # 'extra/google700c1f01b6b0e74c.html': {'path': 'google700c1f01b6b0e74c.html'},
     'extra/custom.css': {'path': 'static/custom.css'},
 }
 CUSTOM_CSS = 'static/custom.css'
