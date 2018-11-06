@@ -2,7 +2,7 @@
 
 This site uses a static site generator, [Pelican](http://docs.getpelican.com/).
 Pelican builds static HTML pages using templates, so it's like HTML but we don't
-have to repeat things like menus and footer in every file.
+have to repeat things like CSS includes, menus and footer in every file.
 
 The templates are in `theme/templates`, and the content is in `content/pages`.
 Pelican allows pages to be created in Markdown (like this file) or HTML.
