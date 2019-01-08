@@ -64,7 +64,8 @@ pip install -r requirements.txt
 or for Python 3.x:
 
 ```shell
-python3 -m venv ~/.virtualenvs/blog
+python3 -m venv ~/.virtualenvs/bruinracing
+source ~/.virtualenvs/bruinracing/bin/activate
 pip3 install -r requirements.txt
 ```
 
