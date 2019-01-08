@@ -17,7 +17,7 @@ SSH_PORT=22
 SSH_USER=bruinracing
 SSH_TARGET_DIR=/srv/www/hosts/bruinracing.com/htdocs
 
-AWS_PROFILE=bruinracing
+AWS_PROFILE=cogini-lisa
 S3_BUCKET=www.bruinracing.com
 
 CLOUDFILES_USERNAME=my_rackspace_username
