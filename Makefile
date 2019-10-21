@@ -1,6 +1,8 @@
 PY?=python
+PIP?=pip
 PELICAN?=pelican
 PELICANOPTS=
+VIRTUALENV?=bruinracing
 
 BASEDIR=$(CURDIR)
 INPUTDIR=$(BASEDIR)/content
@@ -17,8 +19,10 @@ SSH_PORT=22
 SSH_USER=bruinracing
 SSH_TARGET_DIR=/srv/www/hosts/bruinracing.com/htdocs
 
-AWS_PROFILE=bruinracing
-S3_BUCKET=www.bruinracing.com
+AWS_PROFILE?=bruinracing
+# S3_BUCKET=www.bruinracing.com
+S3_BUCKET=bruinracing-website-prod-public-web
+CLOUDFRONT_DISTRIBUTION_ID?=E1FRYHY2QDHN2P
 
 CLOUDFILES_USERNAME=my_rackspace_username
 CLOUDFILES_API_KEY=my_rackspace_api_key
@@ -119,6 +123,12 @@ s3_upload: publish
 	# s3cmd sync $(OUTPUTDIR)/ s3://$(S3_BUCKET) --acl-public --delete-removed --guess-mime-type --no-mime-magic --no-preserve
 	AWS_PROFILE=$(AWS_PROFILE) aws s3 sync $(OUTPUTDIR)/ s3://$(S3_BUCKET) --delete
 
+cloudfront_list:
+	AWS_PROFILE=$(AWS_PROFILE) aws cloudfront list-distributions
+
+cloudfront_upload: s3_upload
+	AWS_PROFILE=$(AWS_PROFILE) aws cloudfront create-invalidation --distribution-id $(CLOUDFRONT_DISTRIBUTION_ID) --paths "/*"
+
 cf_upload: publish
 	cd $(OUTPUTDIR) && swift -v -A https://auth.api.rackspacecloud.com/v1.0 -U $(CLOUDFILES_USERNAME) -K $(CLOUDFILES_API_KEY) upload -c $(CLOUDFILES_CONTAINER) .
 
@@ -126,4 +136,9 @@ github: publish
 	ghp-import -m "Generate Pelican site" -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
 	git push origin $(GITHUB_PAGES_BRANCH)
 
-.PHONY: html help clean regenerate serve serve-global devserver stopserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github
+install:
+	$(PY) -m venv ~/.virtualenvs/$(VIRTUALENV)
+	. ~/.virtualenvs/$(VIRTUALENV)/bin/activate
+	$(PIP) install -r requirements.txt
+
+.PHONY: html help clean regenerate serve serve-global devserver stopserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cloudfront_upload cloudfront_list cf_upload github
